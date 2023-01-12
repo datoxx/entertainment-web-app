@@ -6,15 +6,18 @@ import { MovesObject } from '../types/moves';
 
 export const StoreContext = createContext<UseStates>({
   movies: [],
-  setMovies: () => {}
+  setMovies: () => {},
+  search: "",
+  setSearch: () => {},
 });
 
 const MovesContext = ({children}: MovesContextProps) => {
 
   const [movies, setMovies] = useState<MovesObject[]>(data);
+  const [search, setSearch] = useState<string>("");
 
   return ( 
-    <StoreContext.Provider value={{movies, setMovies}}>
+    <StoreContext.Provider value={{movies, setMovies, search, setSearch}}>
     { children }
     </StoreContext.Provider>
 

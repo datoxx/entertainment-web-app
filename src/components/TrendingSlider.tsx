@@ -4,22 +4,20 @@ import styled from 'styled-components';
 
 
 
-const Series = () => {
+const TrendingSlider = () => {
 
-    const { movies, search } = useContext(StoreContext)
+    const { movies} = useContext(StoreContext)
 
-    const seriesArray = movies.filter(movie => movie.category === "TV Series" );
-    const searchResult = seriesArray.filter(series => series.title.toLowerCase().includes(search));
+    const trendingArray = movies.filter(movie => movie.isTrending === true );
 
     return ( 
         <MovesContainer>
-           <Title> { search !== "" ? `Found ${searchResult.length} results for "${search}"` : "TV Series" }  </Title> 
+            <Title>Trending</Title> 
         </MovesContainer>
      );
 }
  
-export default Series;
-
+export default TrendingSlider;
 
 const MovesContainer = styled.div`
     display: flex;

@@ -5,21 +5,41 @@ import Bookmarked from './pages/Bookmarked';
 import Home from './pages/Home';
 import Header from './components/Header';
 import MovesContext from './context/MovesContext';
+import styled from 'styled-components';
+import Seacrh from './components/Seacrh';
 
 
 function App() {
 
   return (
     <MovesContext>
-      <Header />
-      <Routes>
-        <Route path='/' element={<Home />} /> 
-        <Route path='/moves' element={<Moves />} /> 
-        <Route path='/series' element={<Series />} />
-        <Route path='/bookmarked' element={<Bookmarked />} />
-      </Routes>
+      <Wrapper>
+        <Container>
+          <Header />
+          <Seacrh />
+          <Routes>
+            <Route path='/' element={<Home />} /> 
+            <Route path='/moves' element={<Moves />} /> 
+            <Route path='/series' element={<Series />} />
+            <Route path='/bookmarked' element={<Bookmarked />} />
+          </Routes>
+        </Container>
+      </Wrapper>
     </MovesContext>
   );
 }
 
 export default App;
+
+const Wrapper = styled.div`
+  width: 100%;
+  min-height: 100vh;
+`
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  gap: 24px;
+`

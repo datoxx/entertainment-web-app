@@ -7,5 +7,7 @@ export type MovesContextProps = {
 export type UseStates = {
     movies: MovesObject[],
     setMovies: (e:MovesObject[]) => void
+    search: string,
+    setSearch: (e:string) => void,
   }
   
