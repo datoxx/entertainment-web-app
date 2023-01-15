@@ -1,14 +1,11 @@
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
-import logo  from "../assets/logo.svg";
-import avatar from "../assets/image-avatar.png";
-import {ReactComponent as IconNavHome }from "../assets/icon-nav-home.svg";
-import{ReactComponent as IconNavMovies } from "../assets/icon-nav-movies.svg";
-import {ReactComponent as IconNavTvSeries}  from "../assets/icon-nav-tv-series.svg";
 import { useState } from 'react';
-import{ReactComponent as IconNavBookmark } from "../assets/icon-nav-bookmark.svg";
 
-
+import IconNavHome from '../svg/IconNavHome';
+import IconNavMovies from '../svg/IconNavMovies';
+import IconNavTvSeries from '../svg/IconNavTvSeries';
+import IconNavBookmark from '../svg/IconNavBookmark';
 
 const Header = () => {
 
@@ -16,33 +13,33 @@ const Header = () => {
 
     return ( 
         <Head>
-            <img className="logo" src={logo} alt="logo" />
+            <img className="logo" src={process.env.PUBLIC_URL + '/assets/logo.svg'} alt="logo" />
             <nav>
                 <ListContainer>
-                    <li>
+                    <li onClick={() => setNavIconIsClicked("home")}>
                         <Link to="/">
-                            <StyledIconNavHome iconcolor={navIconIsClicked} onClick={() => setNavIconIsClicked("home")} />
+                            <IconNavHome iconcolor={navIconIsClicked}  />
                         </Link>
                     </li>
-                    <li>
+                    <li onClick={() => setNavIconIsClicked("moves")}>
                         <Link to="/moves">
-                             <StyledIconNavMovies  iconcolor={navIconIsClicked} onClick={() => setNavIconIsClicked("moves")} />
+                             <IconNavMovies iconcolor={navIconIsClicked}  />
                         </Link>
 
                     </li>
-                    <li>
+                    <li  onClick={() => setNavIconIsClicked("series")}>
                         <Link to="/series">
-                            <StyledIconNavTvSeries iconcolor={navIconIsClicked} onClick={() => setNavIconIsClicked("series")} />
+                            <IconNavTvSeries iconcolor={navIconIsClicked} />
                         </Link>
                     </li>
-                    <li>
+                    <li  onClick={() => setNavIconIsClicked("bookmarked")} >
                         <Link to="/bookmarked">
-                            <StyledIconNavBookmark  iconcolor={navIconIsClicked} onClick={() => setNavIconIsClicked("bookmarked")} />
+                            <IconNavBookmark iconcolor={navIconIsClicked} />
                         </Link>
                     </li>
                 </ListContainer>
             </nav>
-            <img className="avatar" src={avatar} alt="avatar" />
+            <img className="avatar" src={process.env.PUBLIC_URL + '/assets/logo.svg'} alt="avatar" />
         </Head>
      );
 }
@@ -78,34 +75,4 @@ const ListContainer = styled.ul`
         list-style-type:none;
     }
 
-`
-interface IconPorps {
-    iconcolor: string
-}
-
-const StyledIconNavHome = styled(IconNavHome)<IconPorps>`
-    fill: ${props => props.iconcolor === "home" ? "#FFFFFF" : "#5A698F" };
-     &:hover path  {
-            fill: red;
-        }
-
-`
-const StyledIconNavMovies = styled(IconNavMovies)<IconPorps>`
-    fill: ${props => props.iconcolor ===  "moves" ? "#FFFFFF" : "#5A698F" };
-     &:hover path  {
-            fill: red;
-        }
-`
-const StyledIconNavTvSeries = styled(IconNavTvSeries)<IconPorps>`
-    fill: ${props => props.iconcolor === "series" ? "#FFFFFF" : "#5A698F" };
-     &:hover path  {
-            fill: red;
-        }
-`
-const StyledIconNavBookmark = styled(IconNavBookmark)<IconPorps>`
-    fill: ${props => props.iconcolor === "bookmarked" ? "#FFFFFF" : "#5A698F" };
-     &:hover path  {
-            fill: red;
-        }
-    
 `

@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import searchIcon from '../assets/icon-search.svg';
 import { useContext } from "react";
 import { StoreContext } from '../context/MovesContext';
 
@@ -14,7 +13,7 @@ const Seacrh = () => {
 
     return ( 
         <SearchContainer>
-            <img src={searchIcon} alt='search-icon' />
+            <img src={process.env.PUBLIC_URL + '/assets/icon-search.svg'} alt='search-icon' />
             <SearchInput type="text" value={search} placeholder="Search for movies or TV series" onChange={HandleSearch} />
         </SearchContainer>
      );
