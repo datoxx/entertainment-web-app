@@ -39,7 +39,7 @@ const Header = () => {
                     </li>
                 </ListContainer>
             </nav>
-            <img className="avatar" src={process.env.PUBLIC_URL + '/assets/logo.svg'} alt="avatar" />
+            <img className="avatar" src={process.env.PUBLIC_URL + '/assets/image-avatar.png'} alt="avatar" />
         </Head>
      );
 }
@@ -53,7 +53,6 @@ const Head = styled.div`
     background: #161D2F;
     padding: 16px;
     width: 100%;
-    max-width: 375px;
   
 
     .logo {

@@ -1,20 +1,31 @@
-import { useContext } from "react";
+import { useContext  } from 'react';
 import { StoreContext } from '../context/MovesContext';
 import styled from 'styled-components';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css'
-// import "@splidejs/react-splide/css/skyblue";
-// import "@splidejs/react-splide/css/sea-green";
-// // or only core styles
-// import "@splidejs/react-splide/css/core";
+
+import IconBookmarkEmpty from '../svg/IconBookmarkEmpty';
+import { MovesObject } from '../types/moves';
 
 
 
 const TrendingSlider = () => {
 
-    const { movies} = useContext(StoreContext)
+    const { movies, setMovies} = useContext(StoreContext)
 
     const trendingArray = movies.filter((movie)  => movie.isTrending);
+
+    const handleClickedBookmark = (title: string) => {
+        const moviesClone: MovesObject[] = movies.slice();
+        const selectMovie: MovesObject | undefined = moviesClone.find((move:MovesObject) => move.title === title);
+        const movieindex = moviesClone.findIndex((move:MovesObject) => move.title === title);
+
+        if(selectMovie) selectMovie.isBookmarked = !selectMovie.isBookmarked;  
+        moviesClone.splice(movieindex, 1, selectMovie as MovesObject );
+
+        setMovies(moviesClone)
+    }
+
 
     console.log("misamarti", trendingArray[0].thumbnail.trending?.small.substring(1))
 
@@ -24,7 +35,8 @@ const TrendingSlider = () => {
             <Splide
                 options={{
                     autoplay: true,
-                    interval: 2000,
+                    interval: 4000,
+                    type: "loop",
                     perPage: 3.5,
                     focus:  1,
                     gap: "2.5rem",
@@ -46,12 +58,15 @@ const TrendingSlider = () => {
                 {trendingArray.map((movie) =>
                     <SplideSlide  key={movie.title}>
                         <TrendMovieContainer>
-                            <img src={`${movie.thumbnail.trending?.small}`}  alt="movie"/>
-                            <BookmarkWrapper>1</BookmarkWrapper>
+                            <img className="trendImage" src={`${movie.thumbnail.trending?.small}`}  alt="movie"/>
+                            <BookmarkWrapper onClick={() => handleClickedBookmark(movie.title)}>
+                                <IconBookmarkEmpty clickedBookmark={movie.isBookmarked}  />
+                            </BookmarkWrapper>
                             <MoviesInfoContainer>
                                 <MoviesSubTitle>
                                     <span>{movie.year}</span>
                                     <span className="dot"></span>
+                                    <img  src={process.env.PUBLIC_URL + '/assets/icon-category-movie.svg'} alt="moviesIcon"/>
                                     <span>{movie.category}</span>
                                     <span className="dot"></span>
                                     <span>{movie.rating}</span>
@@ -96,7 +111,7 @@ const TrendMovieContainer = styled.div`
     position: relative;
     max-width: 100%;
     width: auto;
-    img {
+    .trendImage {
         max-width: 100%;
         border-radius: 8px;
     }
@@ -119,7 +134,10 @@ const BookmarkWrapper = styled.div`
     &:hover {
         background: #FFFFFF;
         opacity: 1;
-
+        cursor: pointer;
+        svg{
+            stroke: black;
+        }
     }
 `
 
