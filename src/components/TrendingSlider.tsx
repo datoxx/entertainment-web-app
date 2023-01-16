@@ -5,29 +5,13 @@ import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css'
 
 import IconBookmarkEmpty from '../svg/IconBookmarkEmpty';
-import { MovesObject } from '../types/moves';
-
 
 
 const TrendingSlider = () => {
 
-    const { movies, setMovies} = useContext(StoreContext)
+    const { movies, handleClickedBookmark} = useContext(StoreContext)
 
     const trendingArray = movies.filter((movie)  => movie.isTrending);
-
-    const handleClickedBookmark = (title: string) => {
-        const moviesClone: MovesObject[] = movies.slice();
-        const selectMovie: MovesObject | undefined = moviesClone.find((move:MovesObject) => move.title === title);
-        const movieindex = moviesClone.findIndex((move:MovesObject) => move.title === title);
-
-        if(selectMovie) selectMovie.isBookmarked = !selectMovie.isBookmarked;  
-        moviesClone.splice(movieindex, 1, selectMovie as MovesObject );
-
-        setMovies(moviesClone)
-    }
-
-
-    console.log("misamarti", trendingArray[0].thumbnail.trending?.small.substring(1))
 
         return ( 
         <MovesContainer>
@@ -47,7 +31,8 @@ const TrendingSlider = () => {
                             perPage: 2.5,
                             gap:  '2.5rem',
                         },
-                        375: {
+
+                        768: {
                             perPage: 1.5,
                             gap:  '1rem',
                         },
@@ -93,9 +78,7 @@ const MovesContainer = styled.div`
     flex-direction: column;
     align-items: start;
     gap: 16px;
-    max-width: 100%;
-    
-
+    width: 100%;
  `
 
 const Title = styled.h1`

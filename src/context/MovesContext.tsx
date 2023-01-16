@@ -9,6 +9,7 @@ export const StoreContext = createContext<UseStates>({
   setMovies: () => {},
   search: "",
   setSearch: () => {},
+  handleClickedBookmark: () => {},
 });
 
 const MovesContext = ({children}: MovesContextProps) => {
@@ -16,8 +17,20 @@ const MovesContext = ({children}: MovesContextProps) => {
   const [movies, setMovies] = useState<MovesObject[]>(data);
   const [search, setSearch] = useState<string>("");
 
+
+  const handleClickedBookmark = (title: string) => {
+    const moviesClone: MovesObject[] = movies.slice();
+    const selectMovie: MovesObject | undefined = moviesClone.find((move:MovesObject) => move.title === title);
+    const movieindex = moviesClone.findIndex((move:MovesObject) => move.title === title);
+
+    if(selectMovie) selectMovie.isBookmarked = !selectMovie.isBookmarked;  
+    moviesClone.splice(movieindex, 1, selectMovie as MovesObject );
+
+    setMovies(moviesClone)
+}
+
   return ( 
-    <StoreContext.Provider value={{movies, setMovies, search, setSearch}}>
+    <StoreContext.Provider value={{movies, setMovies, search, setSearch, handleClickedBookmark}}>
     { children }
     </StoreContext.Provider>
 

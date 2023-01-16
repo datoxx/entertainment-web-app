@@ -9,5 +9,6 @@ export type UseStates = {
     setMovies: (e:MovesObject[]) => void
     search: string,
     setSearch: (e:string) => void,
+    handleClickedBookmark: (e:string) => void
   }
   
