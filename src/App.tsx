@@ -46,7 +46,7 @@ const Container = styled.div`
   gap: 24px;
   padding-bottom: 40px;
   @media (min-width: 1024px) {
-    flex-direction: row;  
+    align-items: stretch;
     padding-left: 140px;
     }
     

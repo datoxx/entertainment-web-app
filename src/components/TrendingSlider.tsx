@@ -65,10 +65,7 @@ const TrendingSlider = () => {
                         </TrendMovieContainer>
                     </SplideSlide>
                 )}
-            </Splide>
-
-                    {/* <img src={`${trendingArray[0].thumbnail.trending?.small}`} alt="imageee" /> */}
-       
+            </Splide>       
 
 
         </MovesContainer>

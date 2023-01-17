@@ -26,12 +26,13 @@ const MovesContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: start;
-    margin: 0px 16px;
+    margin-left: 16px;
     gap: 24px;
     @media (min-width: 1024px) {
       gap: 40px;
     }
 `
+
 
 const Title = styled.h1`
     font-weight: 300;
