@@ -32,6 +32,21 @@ const SearchContainer = styled.div`
     img {
         width: 24px;
         height: 24px;
+        @media (min-width: 768px) {
+            width: 32px;
+            height: 32px;
+        }
+    }
+
+    @media (min-width: 768px) {
+        gap: 24px;
+        width: 100%;
+        margin-bottom: 20px;
+        min-width: 719px;
+    }
+    @media (min-width: 1024px) {
+        margin-top: 40px;
+        margin-bottom: 30px;
     }
 `
 const SearchInput = styled.input`
@@ -56,7 +71,18 @@ const SearchInput = styled.input`
         color: #FFFFFF;
         mix-blend-mode: normal;
         opacity: 0.5;
+        @media (min-width: 768px) {
+        font-size: 24px;
+        line-height: 30px;
     }
-
+    }
+    @media (min-width: 768px) {
+        font-size: 24px;
+        line-height: 30px;
+    }
+    @media (min-width: 1024px) {
+        padding-bottom: 15px;
+        width: 100%;
+    }
 
 `

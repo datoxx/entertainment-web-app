@@ -2,17 +2,19 @@
 import { useContext } from "react";
 import { StoreContext } from '../context/MovesContext';
 import styled from 'styled-components';
+import List from '../components/List';
 
 const Moves = () => {
 
 const { movies, search } = useContext(StoreContext)
 
     const movesArray = movies.filter(movie => movie.category === "Movie" );
-    const searchResult = movesArray.filter(movie => movie.title.toLowerCase().includes(search));
+    const searchResult = movesArray.filter(movie => movie.title.toLowerCase().includes(search.toLowerCase()));
 
     return ( 
         <MovesContainer>
            <Title> { search !== "" ? `Found ${searchResult.length} results for "${search}"` : "Movies" }  </Title> 
+           <List list={searchResult} />
         </MovesContainer>
      );
 }
@@ -26,6 +28,9 @@ const MovesContainer = styled.div`
     align-items: start;
     margin: 0px 16px;
     gap: 24px;
+    @media (min-width: 1024px) {
+      gap: 40px;
+    }
 `
 
 const Title = styled.h1`
@@ -34,4 +39,9 @@ const Title = styled.h1`
     line-height: 25px;
     letter-spacing: -0.3125px;
     color: #FFFFFF;
+    @media (min-width: 768px) {
+        font-size: 32px;
+        line-height: 40px;
+        letter-spacing: -0.5px;
+    }
 `

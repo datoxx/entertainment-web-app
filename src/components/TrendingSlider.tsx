@@ -43,6 +43,10 @@ const TrendingSlider = () => {
                 {trendingArray.map((movie) =>
                     <SplideSlide  key={movie.title}>
                         <TrendMovieContainer>
+                            <HoverContainer>
+                                <img className='playicon' src={process.env.PUBLIC_URL + '/assets/icon-play.svg'} alt='play-icon' />
+                                <span className='playtext'>Play</span>
+                            </HoverContainer>
                             <img className="trendImage" src={`${movie.thumbnail.trending?.small}`}  alt="movie"/>
                             <BookmarkWrapper onClick={() => handleClickedBookmark(movie.title)}>
                                 <IconBookmarkEmpty clickedBookmark={movie.isBookmarked}  />
@@ -79,6 +83,9 @@ const MovesContainer = styled.div`
     align-items: start;
     gap: 16px;
     width: 100%;
+    @media (min-width: 375px) {
+        gap: 25px;
+    }
  `
 
 const Title = styled.h1`
@@ -87,6 +94,11 @@ const Title = styled.h1`
     line-height: 25px;
     letter-spacing: -0.3125px;
     color: #FFFFFF;
+    @media (min-width: 768px) {
+        font-size: 32px;
+        line-height: 40px;
+        letter-spacing: -0.5px;
+    }
 `
 
 
@@ -94,9 +106,17 @@ const TrendMovieContainer = styled.div`
     position: relative;
     max-width: 100%;
     width: auto;
+    &:hover {
+        cursor: pointer;
+        opacity: 0.7;
+        
+    }
     .trendImage {
         max-width: 100%;
         border-radius: 8px;
+        @media (min-width: 1440px) {
+            width: 100%;
+        }
     }
 `
 
@@ -122,6 +142,11 @@ const BookmarkWrapper = styled.div`
             stroke: black;
         }
     }
+
+    @media (min-width: 768px) {
+        top: 16px;
+        right: 24px;
+    }
 `
 
 
@@ -133,6 +158,10 @@ const MoviesInfoContainer = styled.div`
     flex-direction: column;
     align-items: start;
     gap: 4px;
+    @media (min-width: 375px) {
+        bottom: 24px;
+        right: 24px;
+    }
 `
 
 const MoviesSubTitle = styled.div`
@@ -148,6 +177,10 @@ const MoviesSubTitle = styled.div`
         color: #FFFFFF;
         mix-blend-mode: normal;
         opacity: 0.75;
+        @media (min-width: 375px) {
+            font-size: 15px;
+            line-height: 19px;
+        }
     }
 
     .dot {
@@ -165,4 +198,50 @@ const TrendMovieTitle = styled.h3`
     font-size: 15px;
     line-height: 19px;
     color: #FFFFFF;
+    @media (min-width: 375px) {
+        font-size: 24px;
+        line-height: 30px;
+    }
+`
+
+const HoverContainer = styled.div`
+    display: none;
+    ${TrendMovieContainer}:hover & {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        gap: 19px;
+        opacity: 0.5;
+        padding: 9px 24px 9px 9px;
+        transform: translate(-50%, -50%);
+        background: #FFFFFF;
+        mix-blend-mode: normal;
+        border-radius: 28.5px;
+        .playtext {
+            font-weight: 500;
+            font-size: 18px;
+            line-height: 23px;
+            color: black;
+            @media (max-width: 480px) {
+                font-size: 13px;
+                line-height: 28px;
+            }
+        }
+        .playicon {
+            background: black;
+            border-radius: 50%;
+            border: 1px solid black;
+            @media (max-width: 480px) {
+                width: 20px;
+                height: 20px;
+            }
+        }
+        @media (max-width: 480px) {
+                gap: 10px;
+                padding: 6px 18px 6px 6px;
+        }
+    }
 `

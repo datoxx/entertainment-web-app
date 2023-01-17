@@ -16,6 +16,7 @@ function App() {
       <Wrapper>
         <Container>
           <Header />
+          <div>
           <Seacrh />
           <Routes>
             <Route path='/' element={<Home />} /> 
@@ -23,6 +24,7 @@ function App() {
             <Route path='/series' element={<Series />} />
             <Route path='/bookmarked' element={<Bookmarked />} />
           </Routes>
+          </div>
         </Container>
       </Wrapper>
     </MovesContext>
@@ -42,4 +44,10 @@ const Container = styled.div`
   align-items: start;
   justify-content: start;
   gap: 24px;
+  padding-bottom: 40px;
+  @media (min-width: 1024px) {
+    flex-direction: row;  
+    padding-left: 140px;
+    }
+    
 `

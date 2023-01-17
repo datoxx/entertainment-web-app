@@ -21,10 +21,7 @@ const MovesContext = ({children}: MovesContextProps) => {
   const handleClickedBookmark = (title: string) => {
     const moviesClone: MovesObject[] = movies.slice();
     const selectMovie: MovesObject | undefined = moviesClone.find((move:MovesObject) => move.title === title);
-    const movieindex = moviesClone.findIndex((move:MovesObject) => move.title === title);
-
     if(selectMovie) selectMovie.isBookmarked = !selectMovie.isBookmarked;  
-    moviesClone.splice(movieindex, 1, selectMovie as MovesObject );
 
     setMovies(moviesClone)
 }

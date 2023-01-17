@@ -53,16 +53,41 @@ const Head = styled.div`
     background: #161D2F;
     padding: 16px;
     width: 100%;
-  
 
     .logo {
         width: 25px;
         height: 20px;
+        @media (min-width: 768px) {
+            width: 32px;
+            height: 25px;
+        }
     }
 
     .avatar {
         width: 24px;
         height: 24px;
+        @media (min-width: 768px) {
+            width: 32px;
+            height: 32px;
+        }
+    }
+
+    @media (min-width: 768px) {
+        padding: 25px;
+        border-radius: 10px;
+    }
+
+    @media (min-width: 1024px) {
+        display: flex;
+        flex-direction: column;  
+        width: 96px;    
+        padding: 30px;
+        min-height: 95vh;
+        border-radius: 20px;
+        position: fixed;
+        left: 20px;
+        top: 20px;
+
     }
 `
 const ListContainer = styled.ul`
@@ -72,6 +97,19 @@ const ListContainer = styled.ul`
     gap: 24px;
     li {
         list-style-type:none;
+    }
+
+    @media (min-width: 768px) {
+        gap: 32px;
+
+    }
+
+    @media (min-width: 1024px) {
+        display: flex;
+        flex-direction: column;  
+        justify-content: space-between;
+        align-items: center;
+        margin-top: -25vh;
     }
 
 `
