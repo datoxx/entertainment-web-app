@@ -11,8 +11,8 @@
 
 * *React @18.2.0 - front-end framework*
 * *Styled-components @5.3.6 - visual primitives for the component age*
-* *Splide @4.1.4 - Splide is a lightweight, flexible and accessible slider and carousel.
-* *react-router-dom @6.6.2 - React Router DOM is an npm package that enables you to implement dynamic routing in a web app
+* *Splide @4.1.4 - Splide is a lightweight, flexible and accessible slider and carousel.*
+* *react-router-dom @6.6.2 - React Router DOM is an npm package that enables you to implement dynamic routing in a web app*
 
 #
 ### Getting Started
