@@ -1,4 +1,4 @@
-import { createContext,  useState } from "react";
+import { createContext,  useEffect,  useState } from "react";
 import data from "../data.json";
 import { UseStates, MovesContextProps } from '../types/context';
 import { MovesObject } from '../types/moves';
@@ -17,6 +17,11 @@ const MovesContext = ({children}: MovesContextProps) => {
   const [movies, setMovies] = useState<MovesObject[]>(data);
   const [search, setSearch] = useState<string>("");
 
+  useEffect(() => {
+    const jsonStr = localStorage.getItem("movies");
+    if (jsonStr == null) return;
+    setMovies(JSON.parse(jsonStr));
+  }, []);
 
   const handleClickedBookmark = (title: string) => {
     const moviesClone: MovesObject[] = movies.slice();
@@ -24,6 +29,7 @@ const MovesContext = ({children}: MovesContextProps) => {
     if(selectMovie) selectMovie.isBookmarked = !selectMovie.isBookmarked;  
 
     setMovies(moviesClone)
+    localStorage.setItem("movies", JSON.stringify(moviesClone));
 }
 
   return ( 
